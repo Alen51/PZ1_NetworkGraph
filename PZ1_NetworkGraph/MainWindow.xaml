@@ -1,0 +1,138 @@
+﻿<Window x:Class="PZ1_NetworkGraph.MainWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:local="clr-namespace:PZ1_NetworkGraph"
+		mc:Ignorable="d"
+		Title="Network Graph"
+		Width="1200"
+		Height="800"
+		FontSize="22"
+		WindowState="Maximized"
+		WindowStartupLocation="CenterScreen"
+		Top="5"
+		FontFamily="Arial Nova">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="5" />
+			<RowDefinition Height="auto" />
+			<RowDefinition Height="15" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="auto" />
+			<RowDefinition Height="5" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="5" />
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="5" />
+		</Grid.ColumnDefinitions>
+		<StackPanel Grid.Row="1"
+					Grid.Column="1"
+					HorizontalAlignment="Center"
+					Margin="0,0,0,5"
+					Orientation="Horizontal">
+			<Button Content="Elipse"
+					x:Name="DrawElipseButton"
+					Width="auto"
+					Height="auto"
+					Margin="5,5,20,5"
+					Click="DrawElipseButton_Click" />
+			<Button Content="Polygon"
+					x:Name="DrawPolygonButton"
+					Width="auto"
+					Height="auto"
+					Margin="5,5,20,5"
+					Click="DrawPolygonButton_Click" />
+			<Button Content="Text"
+					x:Name="AddTextButton"
+					Width="auto"
+					Height="auto"
+					Margin="5,5,20,5"
+					Click="AddTextButton_Click" />
+			<Button Content="Undo"
+					Name="UndoButton"
+					Width="auto"
+					Height="auto"
+					Margin="5,5,20,5"
+					Click="UndoButton_Click" />
+			<Button Content="Redo"
+					Name="RedoButton"
+					Width="auto"
+					Height="auto"
+					Margin="5,5,20,5"
+					Click="RedoButton_Click" />
+			<Button Content="Clear"
+					Name="ClearButton"
+					Width="auto"
+					Height="auto"
+					Click="ClearButton_Click" />
+            <CheckBox Name="ChangeLineColor_Checkbox"
+					  Margin="10"
+					  Padding="5"
+                      Width="auto"
+					  VerticalContentAlignment="Center"
+					  Click="ChangeLineColor_CheckBox_Click">Line colors</CheckBox>
+            <CheckBox Name="ChangeSwitchColor_Checkbox"
+					  Margin="10"
+					  Padding="5"
+                      Width="auto"
+					  VerticalContentAlignment="Center"
+					  Click="ChangeSwitchColor_Checkbox_Click">Switch colors</CheckBox>
+            <Button Content="Colors"
+					Name="ColorsButton"
+					Width="auto"
+					Height="auto"
+					Click="ColorsButton_Click" />
+            <Button Content="Animation"
+					Name="AnimationButton"
+					Width="auto"
+					Height="auto"
+					Click="AnimationButton_Click" />
+            <Button Content="Screenshot"
+					Name="ScreenshotButton"
+					Width="auto"
+					Height="auto"
+					Click="ScreenshotButton_Click" />
+            
+		</StackPanel>
+        
+
+        <ScrollViewer x:Name="CanvasScrollViewer"
+					  HorizontalScrollBarVisibility="Auto"
+					  VerticalScrollBarVisibility="Auto"
+					  Foreground="Black"
+					  Grid.Column="1"
+					  Grid.Row="3">
+			<Border CornerRadius="4"
+					BorderThickness="4"
+					BorderBrush="#FF384445"
+					ClipToBounds="True"
+					Width="1500"
+					Height="1500"
+					x:Name="NetworkCanvasBorder">
+				<Canvas x:Name="NetworkCanvas"
+						Width="{Binding Path=Width, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Border}}}"
+						Height="{Binding Path=Height, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Border}}}"
+						Background="Transparent"
+						MouseLeftButtonDown="NetworkCanvas_MouseLeftButtonDown"
+						MouseRightButtonDown="NetworkCanvas_MouseRightButtonDown"
+						MouseWheel="NetworkCanvas_MouseWheel">
+				</Canvas>
+			</Border>
+		</ScrollViewer>
+		<Slider x:Name="CanvasZoomSlider"
+				Grid.Column="1"
+				Grid.Row="4"
+				Width="auto"
+				Height="auto"
+				Margin="10"
+				Value="-13"
+				Minimum="-25"
+				Maximum="275"
+				FontSize="50"
+				IsSnapToTickEnabled="True"
+				ValueChanged="Slider_ValueChanged"></Slider>
+
+	</Grid>
+</Window>
